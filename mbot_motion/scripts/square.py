@@ -4,7 +4,8 @@ import math
 import random
 import tf
 from tf.transformations import euler_from_quaternion
-import message_filters #A set of message filters which take in messages and may output those messages at a later time, based on the conditions that filter needs met.
+# A set of message filters which take in messages and may output those messages at a later time, based on the conditions that filter needs met.
+import message_filters
 # The odometry message
 from nav_msgs.msg import Odometry
 # the velocity command message
@@ -20,6 +21,8 @@ arr_goalX = [0, -5, 0]
 arr_goalY = [5, 0, -5]
 
 # method to control the robot
+
+
 def callback(odom):
     # the odometry parameter should be global
     global globalOdom
@@ -31,13 +34,13 @@ def callback(odom):
     # make a new twist message
     command = Twist()
 
-    #log the position to a file
-    X_file = open('X_data.txt','a')
-    Y_file = open('Y_data.txt','a')
+    # log the position to a file
+    X_file = open('X_data.txt', 'a')
+    Y_file = open('Y_data.txt', 'a')
 
     for index in range(1):
-        # Fill in the fields.  Field values are unspecified 
-        # until they are actually assigned. The Twist message 
+        # Fill in the fields.  Field values are unspecified
+        # until they are actually assigned. The Twist message
         # holds linear and angular velocities.
         print "Success Percent = ", success_percent
         command.linear.x = 0.0
@@ -81,7 +84,7 @@ def callback(odom):
         currentAngle = yaw
 
         d_x = goalX - currentX
-        d_y = goalY - currentY 
+        d_y = goalY - currentY
 
         # calculate bearing difference with bot and goal
         bearing_diff = math.atan2(d_y, d_x)
@@ -89,8 +92,8 @@ def callback(odom):
         print "d_y = ", d_y
         print "\n\nbearing diff: ", bearing_diff*180/math.pi
 
-        # the code below (currently commented) shows how 
-        # you can print variables to the terminal (may 
+        # the code below (currently commented) shows how
+        # you can print variables to the terminal (may
         # be useful for debugging)
         print 'x: {0}'.format(currentX)
         print 'y: {0}'.format(currentY)
@@ -99,30 +102,30 @@ def callback(odom):
         # Line the bot up with the goal
         lined_up = False
         bearing = bearing_diff - currentAngle
-        print "bearing " , bearing*180/math.pi
+        print "bearing ", bearing*180/math.pi
 
-        #log the current position to a file
+        # log the current position to a file
         X_file.write('%.4f' % currentX)
         X_file.write('\n')
 
         Y_file.write('%.4f' % currentY)
         Y_file.write('\n')
 
-        if  abs(bearing) < 0.05:
+        if abs(bearing) < 0.05:
             lined_up = True
 
-        if lined_up :
+        if lined_up:
             # compute distance to goal position
-            distToGoal = math.sqrt(math.pow(d_y,2)+math.pow(d_x,2))
+            distToGoal = math.sqrt(math.pow(d_y, 2)+math.pow(d_x, 2))
             vel = 10
 
-            if distToGoal < 5.0:                         #change this based on need
+            if distToGoal < 5.0:  # change this based on need
                 vel = vel*distToGoal/5.0
 
-            if distToGoal < 0.01:                    #change this based on need
-            # Stop if you are within 1 unit of goal
-             vel = 0.0
-             print 'Arrived at goal!'
+            if distToGoal < 0.01:  # change this based on need
+                # Stop if you are within 1 unit of goal
+                vel = 0.0
+                print 'Arrived at goal!'
             # commanded velocities
 
             command.linear.x = 2.5 * (vel)
@@ -134,7 +137,7 @@ def callback(odom):
 
         pub.publish(command)
 
-    #other technique
+    # other technique
 
     # command.angular.z = 1.0 * (bearing )
     # pub.publish(command)
@@ -142,14 +145,14 @@ def callback(odom):
     X_file.close()
     Y_file.close()
 
-
     # main function call
+
 
 if __name__ == "__main__":
     # Initialize the node
     rospy.init_node('square_odom', log_level=rospy.DEBUG)
 
-    # subscribe to odometry message    
+    # subscribe to odometry message
     sub2 = message_filters.Subscriber('odom', Odometry)
 
     # synchronize laser scan and odometry data
@@ -157,7 +160,7 @@ if __name__ == "__main__":
     ts.registerCallback(callback)
 
     # publish twist message
-    pub = rospy.Publisher('cmd_vel_mux/input/navi',Twist, queue_size=10)
+    pub = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
 
     # Turn control over to ROS
     rospy.spin()
