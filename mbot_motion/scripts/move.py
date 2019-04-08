@@ -3,28 +3,30 @@
 import rospy
 from geometry_msgs.msg import Twist
 
+
 def move():
-    
-    #initialize a node
-    rospy.init_node('move_twist', anonymous=False) 
-    
-    #creates a publisher
-    pub = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size = 10)
-    
-    #creates a Twist message with linear and angular values.
+
+    # initialize a node
+    rospy.init_node('move_twist', anonymous=False)
+
+    # creates a publisher
+    pub = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
+
+    # creates a Twist message with linear and angular values.
     msg = Twist()
     msg.linear.x = 0.2
     msg.angular.z = 0.2
-    
-    #save current time and publish rate at 10 Hz.
+
+    # save current time and publish rate at 10 Hz.
     start = rospy.Time.now()
     rate = rospy.Rate(10)
-    
-    #publish for 5 seconds.
+
+    # publish for 5 seconds.
     while rospy.Time.now() < start + rospy.Duration.from_sec(5):
         pub.publish(msg)
         rate.sleep()
-        
+
+
 if __name__ == '__main__':
     try:
         move()
