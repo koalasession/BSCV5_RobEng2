@@ -2,7 +2,7 @@ define kinect ranger
 (
   sensor
   (
-    range_max 6.5
+    range_max 16.0
     fov 360.0
     samples 5000
   )
