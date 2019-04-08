@@ -14,12 +14,15 @@ def move_odom():
     
     #creates a publisher
     pub = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size = 10)
-    
-
-    
+        
     #save current time and publish rate at 10 Hz.
     start = rospy.Time.now()
     rate = rospy.Rate(10)
+    
+    linear_velocity = 0.2
+    angular_velocity = 0.2
+    goal_distance = 2.0
+    goal_angle = radians(180)
     
     #initialize the tf listener
     tf_listener = tf.TransformListener()
@@ -44,12 +47,11 @@ def move_odom():
     #Initialize the position variable as a Point type
     position = Point()
     
-    
-    #Loop once for each leg of the trip ?
+    #Loop once for each leg of the trip.
     for i in range(2):
         #creates a Twist message with linear and angular values.
         msg = Twist()
-        msg.linear.x = 0.2
+        msg.linear.x = linear_velocity
         
         # Get the starting position values     
         (position, rotation) = get_odom(tf_listener,odometry_frame,base_frame)
@@ -60,8 +62,8 @@ def move_odom():
         # Keep track of the distance traveled
         distance = 0
     
-    #publish for 5 seconds.
-    while rospy.Time.now() < start + rospy.Duration.from_sec(10):
+    #publish until the goal is reached.
+    while distance < goal_distance:
         pub.publish(msg)
         rate.sleep()
         #Get the current position
@@ -76,7 +78,7 @@ def move_odom():
     rospy.sleep(1)
     
     #Set the movement command to a rotation
-    msg.angular.z = 0.2
+    msg.angular.z = angular_velocity
     
     # Track the last angle measured
     last_angle = rotation
@@ -84,8 +86,8 @@ def move_odom():
     # Track how far the turtlebot has turned
     turn_angle = 0
     
-    #publish for 5 seconds.
-    while rospy.Time.now() < start + rospy.Duration.from_sec(10):
+    #publish until the goal angle is reached.
+    while abs(turn_angle) < abs(goal_angle):
         pub.publish(msg)
         rate.sleep()
         #Get the current position
