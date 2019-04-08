@@ -211,3 +211,5 @@ CATKIN_IGNORE
 
 # editors
 *.save
+.vscode
+
