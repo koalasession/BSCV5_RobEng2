@@ -52,7 +52,7 @@ def move_odom():
         msg.linear.x = 0.2
         
         # Get the starting position values     
-        (position, rotation) = get_odom(tf_listener,odometry_frame,base_frame)
+        (position, rotation) = get_odom()
 
         x_start = position.x
         y_start = position.y
@@ -65,8 +65,8 @@ def move_odom():
         pub.publish(msg)
         rate.sleep()
         #Get the current position
-        (position, rotation) = get_odom(tf_listener,odometry_frame,base_frame)
-        
+        (position, rotation) = get_odom()
+tf_listener,odometry_frame,base_frame        
         # Compute the Euclidean distance from the start
         distance = sqrt(pow((position.x - x_start), 2) + pow((position.y - y_start), 2))
         
@@ -89,7 +89,7 @@ def move_odom():
         pub.publish(msg)
         rate.sleep()
         #Get the current position
-        (position, rotation) = get_odom(tf_listener,odometry_frame,base_frame)
+        (position, rotation) = get_odom()
         
         # Compute the amount of rotation since the last loop
         delta_angle = normalize_angle(rotation - last_angle)
