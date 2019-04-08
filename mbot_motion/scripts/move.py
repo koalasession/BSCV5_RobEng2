@@ -11,7 +11,7 @@ def move():
 
     # creates a publisher
     pub = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
-    
+
     linear_velocity = 0.2
     angular_velocity = 0.2
 
