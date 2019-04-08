@@ -37,7 +37,9 @@ class Move():
 if __name__ == '__main__':
     try:
         Move()
-    except
+    except KeyboardInterrupt:
+        break
+        
 
 
 //move forward
