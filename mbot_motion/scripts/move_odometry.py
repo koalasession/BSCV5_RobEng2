@@ -20,7 +20,7 @@ def move_odom():
     rate = rospy.Rate(10)
     
     linear_velocity = 0.2
-    angular_velocity = 0.2
+    angular_velocity = 0.7
     goal_distance = 2.0
     goal_angle = radians(180)
     
@@ -48,7 +48,7 @@ def move_odom():
     position = Point()
     
     #Loop once for each leg of the trip.
-    for i in range(2):
+    for i in range(4):
         #creates a Twist message with linear and angular values.
         msg = Twist()
         msg.linear.x = linear_velocity
