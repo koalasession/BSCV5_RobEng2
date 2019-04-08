@@ -131,4 +131,4 @@ if __name__ == '__main__':
     try:
         move_odom()
     except rospy.ROSInterruptException:
-            exit()
+        pass
