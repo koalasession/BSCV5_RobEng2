@@ -62,48 +62,48 @@ def move_odom():
         # Keep track of the distance traveled
         distance = 0
     
-    #publish until the goal is reached.
-    while distance < goal_distance:
-        pub.publish(msg)
-        rate.sleep()
-        #Get the current position
-        (position, rotation) = get_odom(tf_listener,odometry_frame,base_frame)
-        
-        # Compute the Euclidean distance from the start
-        distance = sqrt(pow((position.x - x_start), 2) + pow((position.y - y_start), 2))
-        
-    #Stopping the robot.
-    msg = Twist()
-    pub.publish(msg)
-    rospy.sleep(1)
-    
-    #Set the movement command to a rotation
-    msg.angular.z = angular_velocity
-    
-    # Track the last angle measured
-    last_angle = rotation
+        #publish until the goal is reached.
+        while distance < goal_distance:
+            pub.publish(msg)
+            rate.sleep()
+            #Get the current position
+            (position, rotation) = get_odom(tf_listener,odometry_frame,base_frame)
 
-    # Track how far the turtlebot has turned
-    turn_angle = 0
-    
-    #publish until the goal angle is reached.
-    while abs(turn_angle) < abs(goal_angle):
-        pub.publish(msg)
-        rate.sleep()
-        #Get the current position
-        (position, rotation) = get_odom(tf_listener,odometry_frame,base_frame)
-        
-        # Compute the amount of rotation since the last loop
-        delta_angle = normalize_angle(rotation - last_angle)
+            # Compute the Euclidean distance from the start
+            distance = sqrt(pow((position.x - x_start), 2) + pow((position.y - y_start), 2))
 
-        # Add to the running total
-        turn_angle += delta_angle
+        #Stopping the robot.
+        msg = Twist()
+        pub.publish(msg)
+        rospy.sleep(1)
+
+        #Set the movement command to a rotation
+        msg.angular.z = angular_velocity
+
+        # Track the last angle measured
         last_angle = rotation
-         
-    #Stopping the robot.
-    msg = Twist()
-    pub.publish(msg)
-    rospy.sleep(1)
+
+        # Track how far the turtlebot has turned
+        turn_angle = 0
+
+        #publish until the goal angle is reached.
+        while abs(turn_angle) < abs(goal_angle):
+            pub.publish(msg)
+            rate.sleep()
+            #Get the current position
+            (position, rotation) = get_odom(tf_listener,odometry_frame,base_frame)
+
+            # Compute the amount of rotation since the last loop
+            delta_angle = normalize_angle(rotation - last_angle)
+
+            # Add to the running total
+            turn_angle += delta_angle
+            last_angle = rotation
+
+        #Stopping the robot.
+        msg = Twist()
+        pub.publish(msg)
+        rospy.sleep(1)
     
 def get_odom(tf_listener,odometry_frame,base_frame):
     #Get the current transform between the odom adn base frames
