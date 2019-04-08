@@ -3,8 +3,8 @@ define kinect ranger
   sensor
   (
     range_max 6.5
-    fov 58.0
-    samples 640
+    fov 360.0
+    samples 5000
   )
   # generic model properties
   color "black"
@@ -22,6 +22,6 @@ define turtlebot position
   gui_nose 1
   drive "diff"
   color "gray"
-  
+
   kinect(pose [ -0.1 0.0 -0.11 0.0 ])
 )
