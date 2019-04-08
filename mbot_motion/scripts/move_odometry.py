@@ -48,7 +48,7 @@ def move_odom():
     position = Point()
     
     #Loop once for each leg of the trip.
-    for i in range(4):
+    for i in range(2):
         #creates a Twist message with linear and angular values.
         msg = Twist()
         msg.linear.x = linear_velocity
