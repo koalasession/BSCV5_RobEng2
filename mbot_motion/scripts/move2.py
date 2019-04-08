@@ -42,7 +42,7 @@ if __name__ == '__main__':
         
 
 
-//move forward
+#move forward
 ros: : Time start = ros: : Time: : now()
 while(ros:: Time: : now() - start < ros: : Duration(5.0))
 {
@@ -56,7 +56,7 @@ while(ros:: Time: : now() - start < ros: : Duration(5.0))
     ros: : spinOnce()
     rate.sleep()
 }
-//turn right
+#turn right
 ros: : Time start_turn = ros: : Time: : now()
 while(ros:: Time: : now() - start_turn < ros: : Duration(4.0))
 {
@@ -70,7 +70,7 @@ while(ros:: Time: : now() - start_turn < ros: : Duration(4.0))
     ros: : spinOnce()
     rate.sleep()
 }
-//move forward again
+#move forward again
 ros: : Time start2 = ros: : Time: : now()
 while(ros:: Time: : now() - start2 < ros: : Duration(5.0))
 {
