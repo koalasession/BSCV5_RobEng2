@@ -1,0 +1,37 @@
+# Taken from https://github.com/husky/husky/blob/8cd932ac230b87ba0ce59b75908b759f4065a6c1/husky_navigation/config/costmap_exploration.yaml
+track_unknown_space: true
+global_frame: map
+rolling_window: false
+resolution: 0.05
+robot_base_frame: base_link
+footprint: [[0.1, 0.0], [0.0, 0.1], [-0.1, 0.0], [0.0, -0.1]]
+
+
+plugins:
+- {name: static,            type: "costmap_2d::StaticLayer"}   # for global map
+- {name: explore_boundary,  type: "frontier_exploration::BoundedExploreLayer"}
+#Can disable sensor layer if gmapping is fast enough to update scans
+- {name: sensor,            type: "costmap_2d::ObstacleLayer"}
+- {name: inflation,         type: "costmap_2d::InflationLayer"}
+
+static:
+  #Can pull data from gmapping, map_server or a non-rolling costmap
+  map_topic: /map
+  # map_topic: move_base/global_costmap/costmap
+  subscribe_to_updates: true
+
+explore_boundary:
+  resize_to_boundary: false
+  frontier_travel_point: middle
+  #set to false for gmapping, true if re-exploring a known area
+  explore_clear_space: true
+  # resize_to_boundary: true              # for no global map
+  # frontier_travel_point: closest        # for no global map
+
+
+sensor:
+  observation_sources: laser
+  laser: {data_type: LaserScan, clearing: true, marking: true, topic: scan, inf_is_valid: true, raytrace_range: $(arg sensor_range), obstacle_range: $(arg sensor_range)}
+
+inflation:
+  inflation_radius: 0.15

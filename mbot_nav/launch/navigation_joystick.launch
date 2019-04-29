@@ -1,5 +1,5 @@
 <launch>
   <node name="RVIZ" pkg="rviz" type="rviz" args=" -d $(find mbot_nav)/param/auto_map.rviz" />
-  <include file="$(find turtlebot_teleop)/launch/logitech.launch" /> 
+  <include file="$(find turtlebot_teleop)/launch/logitech.launch" />
 
 </launch>
