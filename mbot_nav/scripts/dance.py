@@ -19,12 +19,12 @@ class MoveBaseSquare():
         quaternions = list()
 
         # positions
-        positions = (
-            (1, 0, 0),
-            (1, 1, 0),
-            (0, 1, 0),
-            (0, 0, 0)
-        )
+        positions = [
+            [1, 0, 0],
+            [1, 1, 0],
+            [0, 1, 0],
+            [0, 0, 0]
+        ]
 
         # First define the corner orientations as Euler angles
         euler_angles = (pi/2, pi, 3*pi/2, 0)
@@ -40,7 +40,7 @@ class MoveBaseSquare():
         waypoints = list()
 
         for i in range(len(positions)):
-            waypoints.append(Pose(Point(**positions[i]), quaternions[0]))
+            waypoints.append(Pose(Point(*positions[i]), quaternions[i]))
 
         # Publisher to manually control the robot (e.g. to stop it, queue_size=5)
         self.cmd_vel_pub = rospy.Publisher(
