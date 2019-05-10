@@ -1,0 +1,55 @@
+<!-- https://husarion.com/tutorials/ros-tutorials/8-unknown-environment-exploration/ -->
+<launch>
+
+    <arg name="use_rosbot" default="false"/>
+    <arg name="use_gazebo" default="true"/>
+    <arg name="world_file" default="worlds/willowgarage.world"/>
+
+    <include if="$(arg use_gazebo)" file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/>
+        <arg name="world_file" value="$(arg world_file)"/>
+    </include>
+
+    <param if="$(arg use_gazebo)" name="use_sim_time" value="true"/>
+
+    <node if="$(arg use_rosbot)" pkg="rplidar_ros" type="rplidarNode" name="rplidar">
+        <param name="angle_compensate" type="bool" value="true"/>
+    </node>
+
+    <node if="$(arg use_rosbot)" pkg="tutorial_pkg" type="drive_controller_node" name="drive_controller"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="laser_broadcaster" args="0.180 0.00 0.040 0 0 0 base_link laser_frame 100" />
+
+    <node pkg="rviz" type="rviz" name="rviz"/>
+
+    <node pkg="gmapping" type="slam_gmapping" name="gmapping">
+        <param name="base_frame" value="base_footprint"/>
+        <param name="odom_frame" value="odom" />
+        <param name="delta" value="0.1" />
+    </node>
+
+<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true">
+    <rosparam file="$(find rbx1_nav)/config/turtlebot/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find rbx1_nav)/config/turtlebot/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find rbx1_nav)/config/turtlebot/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find rbx1_nav)/config/turtlebot/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find rbx1_nav)/config/turtlebot/base_local_planner_params.yaml" command="load" />
+</node>
+
+    <!-- <node pkg="move_base" type="move_base" name="move_base" output="screen">
+        <param name="controller_frequency" value="10.0"/>
+        <rosparam file="$(find tutorial_pkg)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find tutorial_pkg)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find tutorial_pkg)/config/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find tutorial_pkg)/config/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find tutorial_pkg)/config/trajectory_planner.yaml" command="load" />
+    </node> -->
+
+    <node pkg="frontier_exploration" type="explore_client" name="explore_client" output="screen"/>
+
+    <node pkg="frontier_exploration" type="explore_server" name="explore_server" output="screen">
+        <param name="frequency" type="double" value="1.0"/>
+        <param name="goal_aliasing" type="double" value="0.5"/>
+        <rosparam ns="explore_costmap" subst_value="true" file="$(find mbot_nav)/param/exploration.yaml" command="load" />
+    </node>
+
+</launch>
