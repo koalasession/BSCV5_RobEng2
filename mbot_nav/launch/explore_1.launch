@@ -1,12 +1,15 @@
 <!-- https://husarion.com/tutorials/ros-tutorials/8-unknown-environment-exploration/ -->
 <launch>
-
+    <!-- configuation -->
+    <arg name="RVIZ_CONF" default="$(find turtlebot_samples)/launch/turtlebot_exploration.rviz"/>
     <arg name="use_rosbot" default="false"/>
     <arg name="use_gazebo" default="true"/>
     <arg name="world_file" default="worlds/willowgarage.world"/>
 
-    <include if="$(arg use_gazebo)" file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/>
+    <!-- launching gazebo -->
+    <include if="$(arg use_gazebo)" file="$(find mbot_nav)/launch/turtlebot_world.launch">
         <arg name="world_file" value="$(arg world_file)"/>
+        <arg name="gui" default="false"/>
     </include>
 
     <param if="$(arg use_gazebo)" name="use_sim_time" value="true"/>
@@ -19,7 +22,7 @@
 
     <node pkg="tf" type="static_transform_publisher" name="laser_broadcaster" args="0.180 0.00 0.040 0 0 0 base_link laser_frame 100" />
 
-    <node pkg="rviz" type="rviz" name="rviz"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg RVIZ_CONF)" />
 
     <node pkg="gmapping" type="slam_gmapping" name="gmapping">
         <param name="base_frame" value="base_footprint"/>
@@ -27,13 +30,13 @@
         <param name="delta" value="0.1" />
     </node>
 
-<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true">
-    <rosparam file="$(find rbx1_nav)/config/turtlebot/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find rbx1_nav)/config/turtlebot/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find rbx1_nav)/config/turtlebot/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find rbx1_nav)/config/turtlebot/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find rbx1_nav)/config/turtlebot/base_local_planner_params.yaml" command="load" />
-</node>
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true">
+        <rosparam file="$(find rbx1_nav)/config/turtlebot/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find rbx1_nav)/config/turtlebot/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find rbx1_nav)/config/turtlebot/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find rbx1_nav)/config/turtlebot/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find rbx1_nav)/config/turtlebot/base_local_planner_params.yaml" command="load" />
+    </node>
 
     <!-- <node pkg="move_base" type="move_base" name="move_base" output="screen">
         <param name="controller_frequency" value="10.0"/>
@@ -49,7 +52,7 @@
     <node pkg="frontier_exploration" type="explore_server" name="explore_server" output="screen">
         <param name="frequency" type="double" value="1.0"/>
         <param name="goal_aliasing" type="double" value="0.5"/>
-        <rosparam ns="explore_costmap" subst_value="true" file="$(find mbot_nav)/param/exploration.yaml" command="load" />
+        <rosparam ns="explore_costmap" subst_value="true" file="$(find mbot_nav)/param/explore_1/exploration.yaml" command="load" />
     </node>
 
 </launch>
