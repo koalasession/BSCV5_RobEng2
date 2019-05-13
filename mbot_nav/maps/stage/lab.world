@@ -16,7 +16,7 @@ define floorplan model
   laser_return 1
 )
 
-resolution 0.5
+resolution 0.05
 interval_sim 100  # simulation timestep in milliseconds
 
 window
@@ -24,15 +24,15 @@ window
   size [ 640.0 672.0 ]
   center [ 0.0 0.0 ]
   rotate [ 0.0 0.0 ]
-  scale 60
+  scale 2
 )
 
 floorplan
 (
   name "map_lidar"
   bitmap "../map_lidar.pgm"
-  size [ 10.0 10.0 2.0 ]
-  pose [  5.0  5.0 0.0 0.0 ]
+  size [ 640 672 255 ]
+  pose [ 15.5 17.8 0.0 0.0 ]
 )
 
 # throw in a robot
