@@ -18,14 +18,9 @@
           </scan>
           <range>
             <min>0.10</min>
-            <max>16.0</max>
+            <max>3.0</max>
             <resolution>0.01</resolution>
           </range>
-          <noise>
-            <type>Gaussian</type>
-            <mean>0.0</mean>
-            <stddev>0.01</stddev>
-          </noise>
         </ray>
         <plugin name="rplidar_node" filename="libgazebo_ros_laser.so">
           <topicName>/scan</topicName>
