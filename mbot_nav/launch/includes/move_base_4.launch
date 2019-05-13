@@ -1,0 +1,8 @@
+<launch>
+
+    <!-- Move base -->
+    <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml">
+        <!-- <param name="custom_param_file" file="$(find mbot_nav)/param/explore_4/base_local_planner_params.yaml" /> -->
+    </include>
+
+</launch>
