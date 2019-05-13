@@ -25,20 +25,19 @@
     <!-- <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml"/> -->
 
     <!-- same as below -->
-    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-        <rosparam file="$(find mbot_nav)/param/explore_3/costmap_common_params.yaml" command="load" ns="global_costmap" />
-        <rosparam file="$(find mbot_nav)/param/explore_3/costmap_common_params.yaml" command="load" ns="local_costmap" />
-        <rosparam file="$(find mbot_nav)/param/explore_3/local_costmap_params.yaml" command="load" />
-        <rosparam file="$(find mbot_nav)/param/explore_3/global_costmap_params.yaml" command="load" />
-        <rosparam file="$(find mbot_nav)/param/explore_3/base_local_planner_params.yaml" command="load" />
-    </node>
+    <!-- Move base -->
+    <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml">
+    <!-- <param name="custom_param_file" file="$(find mbot_nav)/param/explore_4/base_local_planner_params.yaml" /> -->
+    </include>
 
-    <node pkg="frontier_exploration" type="explore_client" name="explore_client" output="screen"/>
+    <include file="$(find turtlebot_samples)/launch/exploration.launch" />
+
+    <!-- <node pkg="frontier_exploration" type="explore_client" name="explore_client" output="screen"/>
 
     <node pkg="frontier_exploration" type="explore_server" name="explore_server" output="screen">
         <param name="frequency" type="double" value="1.0"/>
         <param name="goal_aliasing" type="double" value="0.5"/>
-        <rosparam ns="explore_costmap" subst_value="true" file="$(find mbot_nav)/param/explore_3/costmap_exploration.yaml" command="load" />
-    </node>
+        <rosparam ns="explore_costmap" subst_value="true" file="$(find mbot_nav)/param/explore_4/costmap_exploration.yaml" command="load" />
+    </node> -->
 
 </launch>
