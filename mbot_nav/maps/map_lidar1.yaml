@@ -1,5 +1,4 @@
-
-image: map_lidar.pgm
+image: map_lidar1.pgm
 resolution: 0.050000
 origin: [-15.730,-16.42, 0.0024]
 negate: 0
