@@ -28,7 +28,7 @@
 
   <!-- Move base -->
   <arg name="custom_param_file" default="$(find mbot_nav)/param/amcl.yaml"/>
-  <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml">
+  <include file="$(find mbot_nav)/launch/includes/move_base.launch.xml">
     <arg name="custom_param_file" value="$(arg custom_param_file)"/>
   </include>
 
