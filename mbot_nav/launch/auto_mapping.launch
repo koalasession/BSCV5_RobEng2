@@ -21,9 +21,9 @@
   <include file="$(arg custom_gmapping_launch_file)"/>
 
   <!-- Move base -->
-  <include file="$(find mbot_nav/launch/includes/move_base_4.launch)"/>
+  <include file="$(find mbot_nav)/launch/includes/move_base_4.launch"/>
 
   <!-- exploration -->
-  <include file="$(find mbot_nav/launch/includes/explore_4.aunch)"/>
+  <include file="$(find mbot_nav)/launch/includes/explore_4.launch"/>
 
 </launch>

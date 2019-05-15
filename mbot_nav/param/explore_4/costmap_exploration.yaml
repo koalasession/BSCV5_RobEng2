@@ -3,27 +3,28 @@
 track_unknown_space: true
 global_frame: map
 rolling_window: false
-resolution: 0.05
-robot_base_frame: base_link
-robot_radius: 0.20
+# resolution: 0.05
+# robot_base_frame: base_link
+# robot_radius: 0.20
 transform_tolerance: 5.0
-update_frequency: 5.0
-publish_frequency: 5.0
+# update_frequency: 5.0
+# publish_frequency: 5.0
 
 plugins:
-- {name: static,            type: "costmap_2d::StaticLayer"}   # for global map
+- {name: static_layer,            type: "costmap_2d::StaticLayer"}   # for global map
 - {name: explore_boundary,  type: "frontier_exploration::BoundedExploreLayer"}
 #Can disable sensor layer if gmapping is fast enough to update scans
-# - {name: sensor,            type: "costmap_2d::VoxelLayer"}
-- {name: inflation,         type: "costmap_2d::InflationLayer"}
+- {name: obstacle_layer,            type: "costmap_2d::ObstacleLayer"}
+- {name: inflation_layer,         type: "costmap_2d::InflationLayer"}
 
 static:
-  map_topic: /map
-  subscribe_to_updates: true
+  # map_topic: /map
+  # subscribe_to_updates: true
+  enabled: true
 
 explore_boundary:
   resize_to_boundary: false
-  frontier_travel_point: middle
+  frontier_travel_point: closest
   explore_clear_space: false
 
 
