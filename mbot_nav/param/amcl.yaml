@@ -1,5 +1,0 @@
-local_costmap:
-  map_type: costmap
-
-global_costmap:
-  map_type: costmap

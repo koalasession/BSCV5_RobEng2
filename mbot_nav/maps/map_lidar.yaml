@@ -1,4 +1,3 @@
-
 image: map_lidar.pgm
 resolution: 0.050000
 origin: [-15.730,-16.42, 0.0024]

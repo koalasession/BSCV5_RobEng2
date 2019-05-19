@@ -2,7 +2,7 @@
   <!-- configuation -->
   <arg name="RVIZ_CONF" default="$(find turtlebot_samples)/launch/turtlebot_exploration.rviz"/>
   <arg name="use_gazebo" default="false"/>
-  <arg name="world_file" default="$(find turtlebot_gazebo)/worlds/willowgarage.world"/>
+  <arg name="world_file" default="$(find turtlebot_gazebo)/worlds/corridor.world"/>
 
   <!-- launching gazebo -->
   <include if="$(arg use_gazebo)" file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
@@ -21,9 +21,9 @@
   <include file="$(arg custom_gmapping_launch_file)"/>
 
   <!-- Move base -->
-  <include file="$(find mbot_nav)/launch/includes/move_base_4.launch"/>
+  <include file="$(find mbot_nav)/launch/includes/move_base.launch.xml"/>
 
   <!-- exploration -->
-  <include file="$(find mbot_nav)/launch/includes/explore_4.launch"/>
+  <include file="$(find mbot_nav)/launch/includes/explore.launch.xml"/>
 
 </launch>
