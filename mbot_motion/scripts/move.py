@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# move in a straight line for 5 seconds
 
 import rospy
 from geometry_msgs.msg import Twist

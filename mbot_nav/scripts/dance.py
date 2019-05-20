@@ -20,10 +20,10 @@ class MoveBaseSquare():
 
         # positions
         positions = [
-            [1.07991194725, 0.5741289258, -0.00143432617188],
-            [1.90010166168, 0.245267286897, -0.00143432617188],
-            [2.02277731895, 1.12589585781, 0.0025634765625],
-            [1.26969671249, 1.40538597107, 0.00247192382812]
+            [0.0190135240555, -0.715080022812, 0.0],
+            [-0.0568915605545, 1.58173918724,  0.0],
+            [1.24441790581, 0.462412834167, 0.0],
+            [-1.45725083351, 0.665389657021, 0.0]
         ]
 
         # First define the corner orientations as Euler angles
@@ -56,7 +56,7 @@ class MoveBaseSquare():
         self.move_base.wait_for_server()
 
         rospy.loginfo("Connected to move base server")
-        rospy.loginfo("Starting move in square")
+        rospy.loginfo("Starting Dance Sequence")
 
         # Initialize a counter to track waypoints
         i = 0

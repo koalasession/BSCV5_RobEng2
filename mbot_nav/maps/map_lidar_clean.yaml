@@ -1,6 +1,6 @@
-image: ./map_lidar_cleaned.pgm
+image: map_lidar_clean.pgm
 resolution: 0.050000
-origin: [-7.38000, -10.23000, 0.0013400]
+origin: [-15.730,-16.42, 0.0024]
 negate: 0
 occupied_thresh: 0.65
 free_thresh: 0.196
