@@ -3,7 +3,7 @@
 import rospy
 from geometry_msgs.msg import Twist, Point, Quaternion
 import tf
-from rbx1_nav.transform_utils import quat_to_angle, normalize_angle
+from mbot_motion.transform_utils import quat_to_angle, normalize_angle
 from math import radians, copysign, sqrt, pow, pi
 
 
