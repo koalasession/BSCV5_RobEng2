@@ -4,7 +4,7 @@
 
     <node pkg="frontier_exploration" type="explore_server" name="explore_server" output="screen">
         <param name="frequency" type="double" value="1.0"/>
-        <param name="goal_aliasing" type="double" value="0.1"/>
+        <param name="goal_aliasing" type="double" value="1.0"/>
         <rosparam file="$(find turtlebot_navigation)/param/costmap_common_params.yaml" command="load" ns="explore_costmap" />
         <rosparam ns="explore_costmap" subst_value="true" file="$(find mbot_nav)/param/costmap_exploration.yaml" command="load" />
     </node>

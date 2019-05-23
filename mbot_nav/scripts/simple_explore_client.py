@@ -5,9 +5,10 @@
 from sys import argv
 
 import rospy
-from frontier_exploration.msg import ExploreTaskAction
-from geometry_msgs.msg import Point32, PointStamped, PolygonStamped
+from frontier_exploration.msg import ExploreTaskAction, ExploreTaskGoal
+from geometry_msgs.msg import Point32, PointStamped, PolygonStamped, Twist
 import actionlib
+
 
 class SimpleExplorationClient:
     """ A simple client class that submits a goal to the frontier_exploration node"""
@@ -26,18 +27,29 @@ class SimpleExplorationClient:
         rospy.init_node('simple_explore', anonymous=False)
         rospy.on_shutdown(self.shutdown)
 
-        self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
+        self.pub = rospy.Publisher(
+            'cmd_vel_mux/input/navi', Twist, queue_size=10)
         self.points_x = [max_x, max_x, -max_x, -max_x, max_x+0.1]
         self.points_y = [max_y, -max_y, -max_y, max_y, max_y+0.1]
 
     def init_move(self):
         move_cmd = Twist()
-        move_cmd.linear.x = 1
-        move_cmd.linear.y = 0
-        move_cmd.angular.z = 2
+        move_cmd.linear.x = 0.0
+        move_cmd.angular.z = 1.0
 
-        self.cmd_vel.publish(move_cmd)
+        self.publish_msg(move_cmd)
         rospy.loginfo("move for init")
+
+    def publish_msg(self, msg):
+        # save current time and publish rate at 10 Hz
+        start = rospy.Time.now()
+        rate = rospy.Rate(10)
+
+        # publish for 5 seconds.
+        while rospy.Time.now() < start + rospy.Duration.from_sec(5):
+            self.pub.publish(msg)
+            rate.sleep()
+        self.pub.publish(Twist())
 
     def request_exploration(self):
         client = actionlib.SimpleActionClient(
@@ -45,7 +57,6 @@ class SimpleExplorationClient:
             ExploreTaskAction)
         client.wait_for_server()
 
-        #  exploration_goal.explore_boundary.header.frame_id = 'map'
         polygonStamped = PolygonStamped()
         polygonStamped.header.frame_id = 'map'
         polygonStamped.header.stamp = rospy.Time.now()
@@ -54,12 +65,12 @@ class SimpleExplorationClient:
         initialGoal.header.frame_id = 'map'
         initialGoal.point = Point32(x=0, y=0, z=0)
 
-        for x,y in zip(self.points_x, self.points_y):
-            polygonStamped.polygon.points.append(Point32(x=x, y=y, z=0))
+        # for x, y in zip(self.points_x, self.points_y):
+        # polygonStamped.polygon.points.append(Point32(x=x, y=y, z=0))
 
         exploration_goal = ExploreTaskGoal()
         # unbounded exploration, uncomment for bounded
-        # exploration_goal.explore_boundary = polygonStamped
+        exploration_goal.explore_boundary = polygonStamped
         exploration_goal.explore_center = initialGoal
 
         client.send_goal(exploration_goal)
@@ -70,13 +81,11 @@ class SimpleExplorationClient:
     def shutdown(self):
         rospy.loginfo("Stopping the robot...")
         # Stop the robot
-        self.cmd_vel.publish(Twist())
+        self.pub.publish(Twist())
         rospy.sleep(1)
 
 
 if __name__ == '__main__':
-    rospy.init_node('exploration_simple')
-
     simpleExplorationClient = SimpleExplorationClient(argv[1:])
     simpleExplorationClient.init_move()
     simpleExplorationClient.request_exploration()
