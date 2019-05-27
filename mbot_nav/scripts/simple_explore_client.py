@@ -35,7 +35,7 @@ class SimpleExplorationClient:
     def init_move(self):
         move_cmd = Twist()
         move_cmd.linear.x = 0.0
-        move_cmd.angular.z = 1.0
+        move_cmd.angular.z = 0.7
 
         self.publish_msg(move_cmd)
         rospy.loginfo("move for init")
@@ -46,7 +46,7 @@ class SimpleExplorationClient:
         rate = rospy.Rate(10)
 
         # publish for 5 seconds.
-        while rospy.Time.now() < start + rospy.Duration.from_sec(5):
+        while rospy.Time.now() < start + rospy.Duration.from_sec(10):
             self.pub.publish(msg)
             rate.sleep()
         self.pub.publish(Twist())
