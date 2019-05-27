@@ -12,7 +12,7 @@
 
   <param if="$(arg use_gazebo)" name="use_sim_time" value="true"/>
 
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg RVIZ_CONF)" />
+  <node if="$(arg use_gazebo)" name="rviz" pkg="rviz" type="rviz" args="-d $(arg RVIZ_CONF)" />
 
   <!-- start of gmapping_demo -->
   <arg name="3d_sensor" default="$(env TURTLEBOT_3D_SENSOR)"/>
