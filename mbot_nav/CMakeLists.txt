@@ -12,6 +12,8 @@ find_package(catkin REQUIRED COMPONENTS
   rviz
   stage_ros
   turtlebot_navigation
+  frontier_exploration
+  turtlebot_gazebo
 )
 
 ## System dependencies are found with CMake's conventions

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>mbot_nav</name>
-  <version>0.0.0</version>
-  <description>The mbot_nav package</description>
+  <version>0.0.3</version>
+  <description>Turtlebot navigation in a known map, Unbounded exploration and mapping</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
@@ -51,16 +51,19 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>rospy</build_depend>
   <build_depend>rviz</build_depend>
-  <build_depend>stage_ros</build_depend>
   <build_depend>turtlebot_navigation</build_depend>
+  <build_depend>turtlebot_gazebo</build_depend>
+  <build_depend>frontier_exploration</build_depend>
   <build_export_depend>rospy</build_export_depend>
   <build_export_depend>rviz</build_export_depend>
-  <build_export_depend>stage_ros</build_export_depend>
   <build_export_depend>turtlebot_navigation</build_export_depend>
+  <build_export_depend>turtlebot_gazebo</build_export_depend>
+  <build_export_depend>frontier_exploration</build_export_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>rviz</exec_depend>
-  <exec_depend>stage_ros</exec_depend>
   <exec_depend>turtlebot_navigation</exec_depend>
+  <exec_depend>turtlebot_gazebo</exec_depend>
+  <exec_depend>frontier_exploration</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
