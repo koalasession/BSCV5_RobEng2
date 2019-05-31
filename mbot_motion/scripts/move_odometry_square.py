@@ -16,12 +16,10 @@ def move_odom():
     pub = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
 
     # save current time and publish rate at 10 Hz.
-    start = rospy.Time.now()
     rate = rospy.Rate(10)
 
     goal_distance = 1.0
     goal_angle = radians(90)
-    angular_tolerance = radians(2.0)
     angular_velocity = 0.7
     linear_velocity = 0.2
 

@@ -2,7 +2,7 @@
 import rospy
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
-PI = 3.1415926535897
+from math import pi
 
 
 def twist_square():
@@ -26,7 +26,7 @@ def twist_square():
 
     turn = Twist()
     turn.linear.x = 0.0
-    turn.angular.z = correction*ang_vel*2*PI/360
+    turn.angular.z = correction*ang_vel*2*pi/360
 
     for i in range(4):
         publish_msg(pub, forward)
