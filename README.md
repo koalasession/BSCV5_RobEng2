@@ -1,4 +1,4 @@
-[Video Link](https://dai.ly/k2v0Tg2zaHsA8OtNbIC "vide link")
+[Video Link](https://youtu.be/mqFVNOJ0VU0 "vide link")
 
 ----------
 **TAble of Contents**
@@ -706,7 +706,11 @@ greater than the Kinect’s height. Otherwise the Obstacle layer will not
 record any obstacles.
 
 
+<<<<<<< HEAD
 ![image](images/max_height.png =300x)
+=======
+![image](images/max_height.png=300x)
+>>>>>>> bff6596956f86c6a4d3ee6556b0f55ed94b080f3
 
 ``` {.python}
 roslaunch turtlebot_bringup minimal.launch
