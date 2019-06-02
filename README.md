@@ -29,7 +29,7 @@ Raphael DUVERNE
 
 Thibault CLAMENS
 
-![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/images/logo.png)
+![image](images/logo.png)
 
 
 Introduction
@@ -73,13 +73,13 @@ known map either by selecting 2D Navigation Goals in Rviz or running a
 custom created script with hard coded positions in the map. Navigation
 in the known map included obstacle avoidance.
 
-![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/storyboard.png)
+![image](images/storyboard.png)
 
 **Third phase** of the project focused on PhantomX Pincher Robot Arm.
 Robotic arm was fixed on a table with a kinect camera. The scenario for
 was called “Pick and Place” like shown in the storyboard.
 
-![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/storyboard_arm.png)
+![image](images/storyboard_arm.png)
 
 Each part of the project was implemented through packages, python
 scripts and custom launch files.
@@ -111,7 +111,7 @@ roscore:
 Environment description
 -----------------------
 
-ROS {#ros .unnumbered}
+ROS
 ---
 
 ROS is an open-source Robot Operating System -\> robotic middleware. It
@@ -121,7 +121,7 @@ between processes, and package management. It also provides tools and
 libraries for obtaining, building, writing, and running code across
 multiple computers.
 
-ROS communication protocol {#ros-communication-protocol .unnumbered}
+ROS communication protocol
 --------------------------
 
 A node publishes a message to a given topic, another node can subscribe
@@ -140,7 +140,7 @@ Bags are an important mechanism for storing data, such as sensor data,
 that can be difficult to collect but is necessary for developing and
 testing algorithms.
 
-ROS Packages {#ros-packages .unnumbered}
+ROS Packages
 ------------
 
 -   **mbot\_motion**
@@ -232,7 +232,7 @@ ROS Packages {#ros-packages .unnumbered}
 Hardware description
 --------------------
 
-![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/hardware.png)
+![image](images/hardware.png)
 
 Network setup
 -------------
@@ -247,7 +247,7 @@ network is used by ROS. On every private Turtlebot network, the
 Workstation has a static IP **192.168.0.100** and the Turtlebot’s IP
 **192.168.0.200**.
 
-![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/network.png)
+![image](images/network.png)
 
 On the Workstation it is important to set correct environment variables.
 This depends on where roscore will be running, **ROS\_MASTER\_URI** can
@@ -353,7 +353,7 @@ Move base is a layer on top of odometry. Turtlebot2, given a location
 and orientation on the map(if there were no dynamic obstacles), can find
 the path and moves towards it automatically.
 
-### Actionlib. {#actionlib. .unnumbered}
+### Actionlib.
 
 The actionlib stack provides a standardized interface for performing
 tasks. Like for example, moving the base to a target location or
@@ -363,7 +363,7 @@ The action client and server communicate with each other using a
 predefined action protocol. This action protocol relies on ROS topics in
 a specified ROS namespace in order to transport messages.
 
-### Movebase. {#movebase. .unnumbered}
+### Movebase.
 
 The movebase package provides an implementation of an actionlib package
 that, allows the turtlebot2 to reach a navigation goal.
@@ -373,14 +373,14 @@ The movebase node also maintains two costmaps, one for the global
 planner, and one for a local planner (see the costmap2d package) that
 are used to accomplish navigation tasks.
 
-### Action API. {#action-api. .unnumbered}
+### Action API.
 
 The movebase node provides an implementation of the SimpleActionServer
 that takes in goals containing geometrymsgs/PoseStamped messages. The
 recommended way to send goals to movebase is by using the
 SimpleActionClient (allows tracking the status).
 
-![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/action_interface.png)
+![image](images/action_interface.png)
 
 **Navigating a square using move base**
 
@@ -431,7 +431,7 @@ Under ideal conditions:
 
 -   Price 99\$ ([dfrobot.com](dfrobot.com))
 
- ![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/rplidar2.png)
+ ![image](images/rplidar2.png)
 
 Setting up and testing the RPLIDAR A1
 -------------------------------------
@@ -504,7 +504,7 @@ roslaunch turtlebot_navigation gmapping_demo.launch
 roslaunch mbot_nav navigation_joystick.launch
 ```
 
-map\_server {#map_server .unnumbered}
+map\_server
 -----------
 
 To create the map we have to use the map\_server ROS node. This node
@@ -533,11 +533,11 @@ configuration and different parameters of the configuration stack is
 crucial to minimize the amount of time spent on development and the
 performance of the algorithm or strategy.
 
-![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/move_base.png)
+![image](images/move_base.png)
 
 ### Planner and Costmap
 
-#### Global and Local Navigation {#global-and-local-navigation .unnumbered}
+#### Global and Local Navigation
 
 The global navigation is used to create paths for a goal in the map or
 at a far-off distance The local navigation is used to create paths in
@@ -554,7 +554,7 @@ radius is relative to the footprint of the robot and user specified
 parameters. Local costmap is generated by inflating obstacles detected
 by the robot’s sensors in real time.
 
-#### Footprint {#footprint .unnumbered}
+#### Footprint
 
 Footprint is the contour of the mobile base. In ROS, it is represented
 by a two dimensional array of the form [x0, y0], [x1, y1], [x2, y2],
@@ -564,7 +564,7 @@ footprint to be slightly larger than the robot’s real contour. To
 determine the footprint of a robot, the most straightforward way is to
 refer to the drawings of your robot.
 
-#### Marking and Clearing {#marking-and-clearing .unnumbered}
+#### Marking and Clearing
 
 The costmap automatically subscribes to sensors topics over ROS and
 updates itself accordingly. Each sensor is used to either mark (insert
@@ -572,7 +572,7 @@ obstacle information into the costmap), clear (remove obstacle
 information from the costmap), or both. A marking operation is just an
 index into an array to change the cost of a cell ranging from 0 to 255.
 
-#### Inflation {#inflation .unnumbered}
+#### Inflation
 
 Inflation is the process of propagating cost values out from occupied
 cells that decrease with distance. For this purpose, there are 5 levels
@@ -629,22 +629,22 @@ is dead reckoning navigation.
 
 ### Changes
 
-#### Launch file {#launch-file .unnumbered}
+#### Launch file
 
 The scan topic of 3dsensor inside *amcl.launch* file was changed to
 kinect\_scan to avoid flickering of the scan topic between Lidar and
 Kinect
 
-![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/images/flicker_map_scan.png)
+![image](images/flicker_map_scan.png)
 
-#### Costmaps {#costmaps .unnumbered}
+#### Costmaps
 
 map\_type is set as costmap instead of voxel to match lidar scan data.
 Voxel map type is a 3d Point cloud that is projected to 2D and then
 translated to the costmap, the Lidar scan data can be translated
 directly to costmap.
 
-![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/images/voxel_vs_costmap.png)
+![image](images/voxel_vs_costmap.png)
 
 *max\_obstacle\_height* is set to 1.0 instead of 0.35
 inside the obstacle layer because the Lidar height from the ground is
@@ -652,7 +652,7 @@ greater than the Kinect’s height. Otherwise the Obstacle layer will not
 record any obstacles.
 
 
-![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/images/max_height.png)
+![image](images/max_height.png)
 
 ``` {.python}
 roslaunch turtlebot_bringup minimal.launch
@@ -673,7 +673,7 @@ the map and the robot position.
 An algorithm and a strategy is developed in order to correctly explore
 and map unknown parts of the map.
 
-Frontier exploration {#frontier-exploration .unnumbered}
+Frontier exploration
 --------------------
 
 Frontier expliration is a ROS package made for exploring unknown
@@ -715,7 +715,7 @@ exploration_goal.explore_center = initialGoal
 client.send_goal(exploration_goal)
 ```
 
-Notes {#notes-1 .unnumbered}
+Notes
 -----
 
 -   The package is buggy and has been updated in later versions of ROS
@@ -732,7 +732,7 @@ Notes {#notes-1 .unnumbered}
 -   This package with Lidar is better used in walls only environment or
     a closed maze
 
-Running {#running .unnumbered}
+Running
 -------
 
 ``` {.python}
@@ -754,7 +754,7 @@ Robocontroller for on-board processing. The gripper can lift up to 250
 grams. The arm was already assembled when we started to work on it, and
 it had been set up on a table with a top view from a kinect.
 
-Calibration {#calibration .unnumbered}
+Calibration
 -----------
 
 For the arm to be able to pick up a cube, the arm had to be calibrated
@@ -799,7 +799,7 @@ roslaunch turlebot_arm_block_manipulation
 block_manip_complete.launch
 ```
 
-Changes to the packages {#changes-to-the-packages .unnumbered}
+Changes to the packages
 -----------------------
 
 **mbot\_arm**
@@ -845,7 +845,7 @@ is started and in return, it picks up the cube from the turtlebot and
 puts it at a hard-coded place on the table. The program is then
 terminated.
 
-Notes {#notes-2 .unnumbered}
+Notes
 -----
 
 -   Permissions for read writing and executing has to be enabled for the
