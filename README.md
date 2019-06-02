@@ -1,7 +1,7 @@
 [Video Link](https://youtu.be/mqFVNOJ0VU0 "vide link")
 
 ----------
-**TAble of Contents**
+**Table of Contents**
 - [Introduction](#introduction)
   - [Objectives](#objectives)
   - [Project description](#project-description)
@@ -724,12 +724,15 @@ record any obstacles.
 
 ![image](images/max_height.png)
 
+Running
+-------------
+on Turtlebot
 ``` {.python}
 roslaunch turtlebot_bringup minimal.launch
 roslaunch turtlebot_navigation amcl_demo.launch
 map_file:=`rospack find mbor_nav`/maps/map_lidar.yaml
 ```
-
+on Workstation
 ``` {.python}
 roslaunch turtlebot_rviz_launchers view_navigation.launch
 ```
