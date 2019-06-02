@@ -1,6 +1,8 @@
 [Video Link](https://dai.ly/k2v0Tg2zaHsA8OtNbIC "vide link")
 
+
 University of Burgundy
+
 Robotic Engineering 2 - ROS PROJECT
 
 
@@ -8,19 +10,26 @@ Robotic Engineering 2 - ROS PROJECT
 
 
 *Authors*
+
 Sylwia Bakalarz
+
 Arsanios Mikael
+
 Lasse Mackeprang
 
 
 
 *Supervisors*
+
 Ralph SEULIN
+
 Marc BLANCHON
+
 Raphael DUVERNE
+
 Thibault CLAMENS
 
-![image](images/logo.png)
+![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/images/logo.png)
 
 
 Introduction
@@ -64,13 +73,13 @@ known map either by selecting 2D Navigation Goals in Rviz or running a
 custom created script with hard coded positions in the map. Navigation
 in the known map included obstacle avoidance.
 
-![image](storyboard.png)
+![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/storyboard.png)
 
 **Third phase** of the project focused on PhantomX Pincher Robot Arm.
 Robotic arm was fixed on a table with a kinect camera. The scenario for
 was called “Pick and Place” like shown in the storyboard.
 
-![image](storyboard_arm.png)
+![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/storyboard_arm.png)
 
 Each part of the project was implemented through packages, python
 scripts and custom launch files.
@@ -223,7 +232,7 @@ ROS Packages {#ros-packages .unnumbered}
 Hardware description
 --------------------
 
-![image](hardware.png)
+![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/hardware.png)
 
 Network setup
 -------------
@@ -238,7 +247,7 @@ network is used by ROS. On every private Turtlebot network, the
 Workstation has a static IP **192.168.0.100** and the Turtlebot’s IP
 **192.168.0.200**.
 
-![image](network.png)
+![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/network.png)
 
 On the Workstation it is important to set correct environment variables.
 This depends on where roscore will be running, **ROS\_MASTER\_URI** can
@@ -371,7 +380,7 @@ that takes in goals containing geometrymsgs/PoseStamped messages. The
 recommended way to send goals to movebase is by using the
 SimpleActionClient (allows tracking the status).
 
-![image](action_interface.png)
+![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/action_interface.png)
 
 **Navigating a square using move base**
 
@@ -422,7 +431,7 @@ Under ideal conditions:
 
 -   Price 99\$ ([dfrobot.com](dfrobot.com))
 
- ![image](rplidar2.png)
+ ![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/rplidar2.png)
 
 Setting up and testing the RPLIDAR A1
 -------------------------------------
@@ -524,7 +533,7 @@ configuration and different parameters of the configuration stack is
 crucial to minimize the amount of time spent on development and the
 performance of the algorithm or strategy.
 
-![image](move_base.png)
+![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/move_base.png)
 
 ### Planner and Costmap
 
@@ -626,7 +635,7 @@ The scan topic of 3dsensor inside *amcl.launch* file was changed to
 kinect\_scan to avoid flickering of the scan topic between Lidar and
 Kinect
 
-![image](images/flicker_map_scan.png)
+![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/images/flicker_map_scan.png)
 
 #### Costmaps {#costmaps .unnumbered}
 
@@ -635,7 +644,7 @@ Voxel map type is a 3d Point cloud that is projected to 2D and then
 translated to the costmap, the Lidar scan data can be translated
 directly to costmap.
 
-![image](images/voxel_vs_costmap.png)
+![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/images/voxel_vs_costmap.png)
 
 *max\_obstacle\_height* is set to 1.0 instead of 0.35
 inside the obstacle layer because the Lidar height from the ground is
@@ -643,7 +652,7 @@ greater than the Kinect’s height. Otherwise the Obstacle layer will not
 record any obstacles.
 
 
-![image](images/max_height.png)
+![image](https://github.com/koalasession/BSCV5_RobEng2/raw/master/images/max_height.png)
 
 ``` {.python}
 roslaunch turtlebot_bringup minimal.launch

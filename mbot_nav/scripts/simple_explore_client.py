@@ -1,7 +1,4 @@
 #!/usr/bin/env python
-# https://github.com/borisoft/circlerecognize/blob/2d87a9c5184c0d241a1e44508cc6e65ee30b2268/src/fist_robotics_labs/src/makemap.py?fbclid=IwAR1i6LeQ14mU4yKE0MUALadHptBZOYIryOcbWqiVO4x5oc8-gm6CeW1O2nY
-# for inclusion in launch file
-# https://github.com/katie0809/HaniumProject2017/blob/ef9868e5a7ef5e47d30d06d609e134ef0cc49c54/src/frontier_explore_b.py?fbclid=IwAR2fzcP0kRivAkOWpfPFGe_Wf_KqjxD_tz5rQ1zCugZZO6VujIplNZznArA
 from sys import argv
 
 import rospy
