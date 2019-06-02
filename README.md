@@ -1,4 +1,5 @@
 [Video Link](https://youtu.be/mqFVNOJ0VU0 "vide link")
+[Backup Link](https://dai.ly/x7a3sxu)
 
 ----------
 **Table of Contents**
