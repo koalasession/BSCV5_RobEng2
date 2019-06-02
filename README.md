@@ -924,6 +924,9 @@ ourselves in need to restart the base of turtlebot as some unexpected
 errors came up.
 
 
+Bibliography
+===========
+
 *ROS by example vol. 1*, R. Patrick Goebel Leslie Lamport, * 8.4 Map
 Building using the gmapping Package - ROS by Example vol. 1*, R. Patrick
 
