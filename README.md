@@ -706,7 +706,7 @@ greater than the Kinect’s height. Otherwise the Obstacle layer will not
 record any obstacles.
 
 
-![image](images/max_height.png)
+![image](images/max_height.png =300x)
 
 ``` {.python}
 roslaunch turtlebot_bringup minimal.launch
