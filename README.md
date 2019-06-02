@@ -21,6 +21,7 @@
     - [Actionlib.](#actionlib)
     - [Movebase.](#movebase)
     - [Action API.](#action-api)
+  - [Running Scripts](#running-scripts)
 - [II: Planar Laser RangeFinder.](#ii-planar-laser-rangefinder)
   - [Slamtec RPLIDAR A1](#slamtec-rplidar-a1)
     - [Specifications](#specifications)
@@ -456,6 +457,21 @@ SimpleActionClient (allows tracking the status).
         # Start the robot moving toward the goal
         self.move(goal)
         i += 1
+```
+
+Running Scripts
+---------------
+
+```
+roslaunch turtlebot_bringup minimal.launch
+rosrun mbot_motion <script_name>.py
+```
+Available scripts: move.py, twist_square.py, move_odometry.py,
+move_odometry_square.py, move_base_square.py
+
+For the move base any empty map should be provided
+```
+roslaunch turtlebot_navigation amcl_demo.launch map_file := `rospack find rbx1_nav`/maps/blank_map.yaml
 ```
 
 II: Planar Laser RangeFinder.
