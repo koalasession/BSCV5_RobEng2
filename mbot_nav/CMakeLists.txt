@@ -10,10 +10,9 @@ project(mbot_nav)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   rviz
-  stage_ros
   turtlebot_navigation
-  frontier_exploration
   turtlebot_gazebo
+  frontier_exploration
 )
 
 ## System dependencies are found with CMake's conventions
