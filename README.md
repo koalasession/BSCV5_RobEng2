@@ -9,7 +9,7 @@ Robotic Engineering 2 - ROS PROJECT
 <span>**Report**</span>
 
 
-*Authors*
+**Authors**
 
 Sylwia Bakalarz
 
@@ -19,7 +19,7 @@ Lasse Mackeprang
 
 
 
-*Supervisors*
+**Supervisors**
 
 Ralph SEULIN
 
@@ -926,15 +926,23 @@ errors came up.
 
 *ROS by example vol. 1*, R. Patrick Goebel Leslie Lamport, * 8.4 Map
 Building using the gmapping Package - ROS by Example vol. 1*, R. Patrick
+
 Goebel *ROS wiki*, <https://wiki.ros.org> *Gmapping*,
+
 <http://wiki.ros.org/gmapping> *Lidar*,
+
 <https://www.slamtec.com/en/Lidar/A1> *Robot arm*,
+
 <https://www.trossenrobotics.com/p/PhantomX-Pincher-Robot-Arm.aspx> *ROS
 Frontier exploration*.
+
 [ http://wiki.ros.org/frontier\_exploration]( http://wiki.ros.org/frontier_exploration)
 *Kaiyu Zheng ROS Navigation Tuning Guide*.
+
 [ http://kaiyuzheng.me/documents/navguide.pdf]( http://kaiyuzheng.me/documents/navguide.pdf)
 *Giorgio Grisetti Introduction to Navigation using ROS*.
+
 [ https://www.dis.uniroma1.it/\~nardi/Didattica/CAI/matdid/robot-programming-ROS-introduction-to-navigation.pdf]( https://www.dis.uniroma1.it/~nardi/Didattica/CAI/matdid/robot-programming-ROS-introduction-to-navigation.pdf)
 *Robotic arm package*.
+
 [ https://github.com/NathanCrombez/PhantomXPincherArmROS]( https://github.com/NathanCrombez/PhantomXPincherArmROS)
