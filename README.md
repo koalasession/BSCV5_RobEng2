@@ -67,7 +67,7 @@ Robotic Engineering 2 - ROS PROJECT
 
 Sylwia Bakalarz
 
-Arsanios Mikael
+Arsanios Mickael
 
 Lasse Mackeprang
 
