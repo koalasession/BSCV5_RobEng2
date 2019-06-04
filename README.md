@@ -730,8 +730,7 @@ Running
 on Turtlebot
 ``` {.python}
 roslaunch turtlebot_bringup minimal.launch
-roslaunch turtlebot_navigation amcl_demo.launch
-map_file:=`rospack find mbor_nav`/maps/map_lidar.yaml
+roslaunch turtlebot_navigation amcl_demo.launch map_file:=/home/turtlebot/ros/indigo/catkin_ws/src/milanobot/mbot_nav/maps/map_lidar.yaml
 ```
 on Workstation
 ``` {.python}
